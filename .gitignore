@@ -1,12 +1,9 @@
-.DS_STORE
-node_modules
-build/
 *.log*
 *.sublime-project
 *.sublime-workspace
 .idea
 *.iml
-.vscode# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+.vscode
 
 # dependencies
 /node_modules

@@ -20,22 +20,12 @@ const INITIAL_POSTS = [
         title: "Post 3",
         image: "https://i.artfile.ru/1600x1200_353220_[www.ArtFile.ru].jpg",
     },
-    {
-        id: 4,
-        title: "Post 4",
-        image: "https://i.artfile.ru/1600x1200_353220_[www.ArtFile.ru].jpg",
-    },
-    {
-        id: 5,
-        title: "Post 5",
-        image: "https://i.artfile.ru/1600x1200_353220_[www.ArtFile.ru].jpg",
-    },
 ];
 
-export const PostsPage = () => (
+export const MainPage = () => (
     <>
         <Container>
-            <Typo>Публикации</Typo>
+            <Typo>Свежие публикации</Typo>
             <Posts posts={INITIAL_POSTS} />
         </Container>
     </>

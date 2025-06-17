@@ -6,12 +6,12 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import {Root} from "./components/Root";
-import {Posts} from "./pages/posts";
-import {AddPost} from "./pages/posts/add";
-import {DetailPost} from "./pages/posts/detail";
-import {EditPost} from "./pages/posts/edit";
-import {Auth} from "./pages/auth";
-import {Registration} from "./pages/registration";
+import {PostsPage} from "./pages/posts";
+import {AddPostPage} from "./pages/posts/add";
+import {DetailPostPage} from "./pages/posts/detail";
+import {EditPostPage} from "./pages/posts/edit";
+import {AuthPage} from "./pages/auth";
+import {RegistrationPage} from "./pages/registration";
 import {store} from "./redux/store";
 
 const router = createBrowserRouter([
@@ -25,27 +25,27 @@ const router = createBrowserRouter([
             },
             {
                 path: "posts",
-                element: <Posts />,
+                element: <PostsPage />,
             },
             {
                 path: "posts/:id",
-                element: <DetailPost />,
+                element: <DetailPostPage />,
             },
             {
                 path: "posts/:id/edit",
-                element: <EditPost />,
+                element: <EditPostPage />,
             },
             {
                 path: "posts/add",
-                element: <AddPost />,
+                element: <AddPostPage />,
             },
             {
                 path: "auth",
-                element: <Auth />,
+                element: <AuthPage />,
             },
             {
                 path: "registration",
-                element: <Registration />,
+                element: <RegistrationPage />,
             },
         ],
     },

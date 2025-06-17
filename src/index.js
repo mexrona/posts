@@ -12,16 +12,6 @@ import {EditPost} from "./pages/posts/edit";
 import {Auth} from "./pages/auth";
 import {Registration} from "./pages/registration";
 
-/**
- * Главная - / - тут меню и мб виджет с 3мя последними постами
- * /posts - тут все посты с пагинацией, фильтрацией и сортировкой
- * /posts/id - страничка конкретного поста
- * /posts/id/edit - страничка редактирования поста
- * /posts/add - страничка добавления поста (под админом)
- * /auth - страничка авторизации
- * /register - страничка регистрации
- */
-
 const router = createBrowserRouter([
     {
         path: "/",

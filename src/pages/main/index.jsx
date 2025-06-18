@@ -1,5 +1,4 @@
 import React from "react";
-import * as SC from "./styles";
 import {Container} from "../../components/Container";
 import {Typo} from "../../components/Typo";
 import {Posts} from "../../components/Posts";

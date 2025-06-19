@@ -12,6 +12,10 @@ export const Text = styled.div`
 `;
 
 export const LinkWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
     text-align: center;
     margin: 15px 0 0 0;
 `;

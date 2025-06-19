@@ -5,9 +5,8 @@ import * as SC from "./styles";
 export const Posts = ({posts}) => (
     <>
         <SC.Posts>
-            {posts.map((post) => (
-                <Post post={post} key={post.id} />
-            ))}
+            {posts.length > 0 &&
+                posts.map((post) => <Post post={post} key={post.id} />)}
         </SC.Posts>
     </>
 );

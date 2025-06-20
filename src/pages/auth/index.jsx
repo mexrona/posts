@@ -7,9 +7,12 @@ import {Typo} from "../../components/ui/Typo";
 import {Form} from "../../components/ui/Form";
 import {Input} from "../../components/ui/Input";
 import {Field} from "../../components/ui/Field";
+import {Button} from "../../components/ui/Button";
+import {Modal} from "../../components/ui/Modal";
 
 export const AuthPage = () => {
     const [formValues, setFormValues] = useState({email: "", password: ""});
+    const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -23,7 +26,7 @@ export const AuthPage = () => {
             const users = JSON.parse(localStorage.getItem("users"));
 
             if (!users) {
-                alert("Данный пользователь не найден в системе");
+                setShowModal(true);
                 return;
             }
 
@@ -34,7 +37,7 @@ export const AuthPage = () => {
             );
 
             if (!currentUser) {
-                alert("Данный пользователь не найден в системе");
+                setShowModal(true);
                 return;
             }
 
@@ -50,6 +53,13 @@ export const AuthPage = () => {
 
     return (
         <Container>
+            {showModal && (
+                <Modal>
+                    Данный пользователь не найден в системе
+                    <br />
+                    <Button onClick={() => setShowModal(false)}>Ок</Button>
+                </Modal>
+            )}
             <Typo>Страница авторизации</Typo>
             <Form onSubmit={onSubmit}>
                 <Field>
@@ -74,9 +84,9 @@ export const AuthPage = () => {
                         }
                     />
                 </Field>
-                <button type="submit" disabled={disabled}>
+                <Button type="submit" disabled={disabled}>
                     Авторизация
-                </button>
+                </Button>
             </Form>
         </Container>
     );

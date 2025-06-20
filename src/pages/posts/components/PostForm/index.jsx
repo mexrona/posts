@@ -5,6 +5,7 @@ import {Typo} from "../../../../components/ui/Typo";
 import {Form} from "../../../../components/ui/Form";
 import {Field} from "../../../../components/ui/Field";
 import {Input} from "../../../../components/ui/Input/styles";
+import {Button} from "../../../../components/ui/Button";
 
 const DEFAULT_VALUES = {title: "", body: ""};
 
@@ -52,9 +53,9 @@ export const PostForm = ({title, onSubmitForm, defaultValues}) => {
                         }
                     />
                 </Field>
-                <SC.Button type="submit" disabled={disabled}>
+                <Button isPostFormBtn={true} type="submit" disabled={disabled}>
                     Сохранить
-                </SC.Button>
+                </Button>
             </Form>
         </Container>
     );

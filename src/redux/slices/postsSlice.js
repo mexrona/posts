@@ -51,8 +51,17 @@ export const postsSlice = createSlice({
             const newPost = {...action.payload};
 
             newPost.id = new Date().getTime();
+
             state.posts.list = state.posts.list
                 ? [newPost, ...state.posts.list]
+                : [newPost];
+
+            state.freshPosts.posts = state.freshPosts.posts
+                ? [
+                      newPost,
+                      state.freshPosts.posts[0],
+                      state.freshPosts.posts[1],
+                  ]
                 : [newPost];
         },
         showPost: (state, action) => {

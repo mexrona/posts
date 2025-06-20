@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {Container} from "../../components/ui/Container";
 import {Typo} from "../../components/ui/Typo";
 import {Posts} from "../../components/Posts";
+import {Modal} from "../../components/ui/Modal";
+import {Loader} from "../../components/ui/Loader";
 import {getPosts} from "../../redux/slices/postsSlice";
 
 export const PostsPage = () => {
@@ -16,7 +18,13 @@ export const PostsPage = () => {
     }, [list, dispatch]);
 
     if (!list && loading) {
-        return <Container>Loading...</Container>;
+        return (
+            <Container>
+                <Modal>
+                    <Loader />
+                </Modal>
+            </Container>
+        );
     }
 
     if (!list) {

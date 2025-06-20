@@ -1,4 +1,4 @@
-import React, {Children} from "react";
+import React from "react";
 import * as SC from "./styles";
 
 export const Container = ({children}) => (

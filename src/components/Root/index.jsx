@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Outlet, useNavigate} from "react-router-dom";
 import * as SC from "./styles";
 import {Container} from "../ui/Container";
+import {Button} from "../ui/Button";
 import {logout} from "../../redux/slices/authSlice";
 
 export const Root = () => {
@@ -32,7 +33,7 @@ export const Root = () => {
                             Регистрация
                         </SC.MenuItem>
                     )}
-                    {user && <button onClick={onClickExitBtn}>Выход</button>}
+                    {user && <Button onClick={onClickExitBtn}>Выход</Button>}
                 </SC.Menu>
             </Container>
             <Outlet />

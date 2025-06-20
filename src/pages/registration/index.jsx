@@ -5,6 +5,8 @@ import {Typo} from "../../components/ui/Typo";
 import {Form} from "../../components/ui/Form";
 import {Field} from "../../components/ui/Field";
 import {Input} from "../../components/ui/Input/styles";
+import {Modal} from "../../components/ui/Modal";
+import {Button} from "../../components/ui/Button";
 
 export const RegistrationPage = () => {
     const [formValues, setFormValues] = useState({
@@ -13,6 +15,7 @@ export const RegistrationPage = () => {
         email: "",
         password: "",
     });
+    const [modalText, setModalText] = useState("");
     const navigate = useNavigate();
 
     const onSubmit = (e) => {
@@ -25,23 +28,31 @@ export const RegistrationPage = () => {
 
             if (!users) {
                 localStorage.setItem("users", JSON.stringify([newUser]));
-                alert("Вы успешно зарегистрировались");
-                navigate("/auth");
+                setModalText("Вы успешно зарегистрировались");
                 return;
             }
 
             if (users.find((user) => user.email === formValues.email)) {
-                alert("Пользователь с таким email уже существует");
+                setModalText("Пользователь с таким email уже существует");
                 return;
             }
 
             users.push(newUser);
 
             localStorage.setItem("users", JSON.stringify(users));
-            alert("Вы успешно зарегистрировались");
-            navigate("/auth");
+            setModalText("Вы успешно зарегистрировались");
         } catch (e) {
             console.log(e);
+        }
+    };
+
+    const onClickOk = (modalText) => {
+        const currentText = modalText;
+
+        setModalText("");
+
+        if (currentText !== "Пользователь с таким email уже существует") {
+            navigate("/auth");
         }
     };
 
@@ -53,6 +64,13 @@ export const RegistrationPage = () => {
 
     return (
         <Container>
+            {modalText && (
+                <Modal>
+                    {modalText}
+                    <br />
+                    <Button onClick={() => onClickOk(modalText)}>Ок</Button>
+                </Modal>
+            )}
             <Typo>Страница регистрации</Typo>
             <Form onSubmit={onSubmit}>
                 <Field>
@@ -99,9 +117,9 @@ export const RegistrationPage = () => {
                         }
                     />
                 </Field>
-                <button type="submit" disabled={disabled}>
+                <Button type="submit" disabled={disabled}>
                     Регистрация
-                </button>
+                </Button>
             </Form>
         </Container>
     );

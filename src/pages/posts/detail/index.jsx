@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams, useNavigate} from "react-router-dom";
-import {Typo} from "../../../components/Typo";
-import {Container} from "../../../components/Container";
-import {Link} from "../../../components/Link";
+import {Typo} from "../../../components/ui/Typo";
+import {Container} from "../../../components/ui/Container";
+import {Link} from "../../../components/ui/Link";
 import {
     showPost,
     deletePost,

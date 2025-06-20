@@ -3,7 +3,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {Container} from "../../components/ui/Container";
 import {Typo} from "../../components/ui/Typo";
 import {Posts} from "../../components/Posts";
+import {Modal} from "../../components/ui/Modal";
 import {getFreshPosts} from "../../redux/slices/postsSlice";
+import {Loader} from "../../components/ui/Loader";
 
 export const MainPage = () => {
     const dispatch = useDispatch();
@@ -12,13 +14,19 @@ export const MainPage = () => {
     const {post} = useSelector((state) => state.posts.postForView);
 
     useEffect(() => {
-        dispatch(getFreshPosts());
+        if (!posts) {
+            dispatch(getFreshPosts());
+        }
     }, []);
 
     return (
         <>
             <Container>
-                {loading && <>Loading...</>}
+                {loading && (
+                    <Modal>
+                        <Loader />
+                    </Modal>
+                )}
                 {posts && (
                     <>
                         <Typo>Свежие публикации</Typo>

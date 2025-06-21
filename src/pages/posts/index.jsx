@@ -16,6 +16,7 @@ export const PostsPage = () => {
 
     const [activePostPage, setActivePostPage] = useState("1");
     const [searchValue, setSearchValue] = useState("");
+    const [sortValue, setSortValue] = useState("");
 
     useEffect(() => {
         if (!list) {
@@ -45,6 +46,20 @@ export const PostsPage = () => {
         );
     }
 
+    if (sortValue && filteredList.length > 0) {
+        filteredList = [...filteredList].sort((a, b) => {
+            if (sortValue === "asc") {
+                if (a.title > b.title) return 1;
+                if (a.title === b.title) return 0;
+                if (a.title < b.title) return -1;
+            }
+
+            if (a.title > b.title) return -1;
+            if (a.title === b.title) return 0;
+            if (a.title < b.title) return 1;
+        });
+    }
+
     const postsOfOnePage = 10;
     const postsPageCount = Math.ceil(filteredList.length / postsOfOnePage);
     const pagesPosts = [];
@@ -60,7 +75,12 @@ export const PostsPage = () => {
     return (
         <Container>
             <Typo>Публикации</Typo>
-            <Filter setSearchValue={setSearchValue} />
+            <Filter
+                setSortValue={setSortValue}
+                activePostPage={activePostPage}
+                setActivePostPage={setActivePostPage}
+                setSearchValue={setSearchValue}
+            />
             {searchValue && (
                 <Message>{filteredList.length} результатов</Message>
             )}

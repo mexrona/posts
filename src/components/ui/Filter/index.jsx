@@ -3,9 +3,18 @@ import {Search} from "../Search";
 import {Sort} from "../Sort";
 import * as SC from "./styles";
 
-export const Filter = ({setSearchValue}) => (
+export const Filter = ({
+    activePostPage,
+    setActivePostPage,
+    setSearchValue,
+    setSortValue,
+}) => (
     <SC.Filter>
-        <Search setSearchValue={setSearchValue} />
-        <Sort />
+        <Search
+            activePostPage={activePostPage}
+            setActivePostPage={setActivePostPage}
+            setSearchValue={setSearchValue}
+        />
+        <Sort setSortValue={setSortValue} />
     </SC.Filter>
 );

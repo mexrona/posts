@@ -7,19 +7,20 @@ import {Modal} from "../../components/ui/Modal";
 import {Loader} from "../../components/ui/Loader";
 import {Pagination} from "../../components/ui/Pagination";
 import {getPosts} from "../../redux/slices/postsSlice";
+import {Filter} from "../../components/ui/Filter";
+import {Message} from "../../components/ui/Message";
 
 export const PostsPage = () => {
     const {list, loading} = useSelector((state) => state.posts.posts);
     const dispatch = useDispatch();
 
-    const [activePostPage, setActivePostPage] = useState("");
+    const [activePostPage, setActivePostPage] = useState("1");
+    const [searchValue, setSearchValue] = useState("");
 
     useEffect(() => {
         if (!list) {
             dispatch(getPosts());
         }
-
-        setActivePostPage("1");
     }, [list, dispatch]);
 
     if (!list && loading) {
@@ -36,13 +37,22 @@ export const PostsPage = () => {
         return <>404</>;
     }
 
-    const postsPageCount = Math.ceil(list.length / 10);
+    let filteredList = list;
+
+    if (searchValue) {
+        filteredList = filteredList.filter((post) =>
+            post.title.toLowerCase().includes(searchValue.toLowerCase())
+        );
+    }
+
+    const postsOfOnePage = 10;
+    const postsPageCount = Math.ceil(filteredList.length / postsOfOnePage);
     const pagesPosts = [];
 
     for (let i = 0; i < postsPageCount; i++) {
         let page = [];
-        for (let j = i * postsPageCount; j < (i + 1) * postsPageCount; j++) {
-            page.push(list[j]);
+        for (let j = i * postsOfOnePage; j < (i + 1) * postsOfOnePage; j++) {
+            page.push(filteredList[j]);
         }
         pagesPosts.push(page);
     }
@@ -50,12 +60,18 @@ export const PostsPage = () => {
     return (
         <Container>
             <Typo>Публикации</Typo>
+            <Filter setSearchValue={setSearchValue} />
+            {searchValue && (
+                <Message>{filteredList.length} результатов</Message>
+            )}
             <Posts posts={pagesPosts[Number(activePostPage) - 1]} />
-            <Pagination
-                setActivePostPage={setActivePostPage}
-                postsPageCount={postsPageCount}
-                activePostPage={activePostPage}
-            />
+            {filteredList.length !== 0 && (
+                <Pagination
+                    setActivePostPage={setActivePostPage}
+                    postsPageCount={postsPageCount}
+                    activePostPage={activePostPage}
+                />
+            )}
         </Container>
     );
 };

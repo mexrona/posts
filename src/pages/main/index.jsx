@@ -4,8 +4,8 @@ import {Container} from "../../components/ui/Container";
 import {Typo} from "../../components/ui/Typo";
 import {Posts} from "../../components/Posts";
 import {Modal} from "../../components/ui/Modal";
-import {getFreshPosts} from "../../redux/slices/postsSlice";
 import {Loader} from "../../components/ui/Loader";
+import {getFreshPosts} from "../../redux/slices/postsSlice";
 
 export const MainPage = () => {
     const dispatch = useDispatch();

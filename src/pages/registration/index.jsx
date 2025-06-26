@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useMemo, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Container} from "../../components/ui/Container";
 import {Typo} from "../../components/ui/Typo";
@@ -60,7 +60,11 @@ export const RegistrationPage = () => {
         setFormValues({...formValues, [name]: value});
     };
 
-    const disabled = !formValues.email || !formValues.password;
+    let disabled;
+
+    useMemo(() => {
+        disabled = !formValues.email || !formValues.password;
+    }, []);
 
     return (
         <Container>
